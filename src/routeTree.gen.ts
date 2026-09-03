@@ -15,6 +15,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedEmailGeneratorRouteImport } from './routes/_authenticated/email-generator'
+import { Route as AuthenticatedMeetingSummarizerRouteImport } from './routes/_authenticated/meeting-summarizer'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +47,12 @@ const AuthenticatedEmailGeneratorRoute =
     path: '/email-generator',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedMeetingSummarizerRoute =
+  AuthenticatedMeetingSummarizerRouteImport.update({
+    id: '/meeting-summarizer',
+    path: '/meeting-summarizer',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -53,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/signup': typeof SignupRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/email-generator': typeof AuthenticatedEmailGeneratorRoute
+  '/meeting-summarizer': typeof AuthenticatedMeetingSummarizerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -60,6 +68,7 @@ export interface FileRoutesByTo {
   '/signup': typeof SignupRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/email-generator': typeof AuthenticatedEmailGeneratorRoute
+  '/meeting-summarizer': typeof AuthenticatedMeetingSummarizerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -69,12 +78,25 @@ export interface FileRoutesById {
   '/signup': typeof SignupRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/email-generator': typeof AuthenticatedEmailGeneratorRoute
+  '/_authenticated/meeting-summarizer': typeof AuthenticatedMeetingSummarizerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/signup' | '/dashboard' | '/email-generator'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/signup'
+    | '/dashboard'
+    | '/email-generator'
+    | '/meeting-summarizer'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/signup' | '/dashboard' | '/email-generator'
+  to:
+    | '/'
+    | '/login'
+    | '/signup'
+    | '/dashboard'
+    | '/email-generator'
+    | '/meeting-summarizer'
   id:
     | '__root__'
     | '/'
@@ -83,6 +105,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/_authenticated/dashboard'
     | '/_authenticated/email-generator'
+    | '/_authenticated/meeting-summarizer'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -136,17 +159,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedEmailGeneratorRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/meeting-summarizer': {
+      id: '/_authenticated/meeting-summarizer'
+      path: '/meeting-summarizer'
+      fullPath: '/meeting-summarizer'
+      preLoaderRoute: typeof AuthenticatedMeetingSummarizerRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedEmailGeneratorRoute: typeof AuthenticatedEmailGeneratorRoute
+  AuthenticatedMeetingSummarizerRoute: typeof AuthenticatedMeetingSummarizerRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedEmailGeneratorRoute: AuthenticatedEmailGeneratorRoute,
+  AuthenticatedMeetingSummarizerRoute: AuthenticatedMeetingSummarizerRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
