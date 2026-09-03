@@ -45,7 +45,7 @@ export const Route = createFileRoute("/_authenticated/research-assistant")({
       { property: "og:description", content: "Understand complex information faster." },
     ],
   }),
-  component: ResearchAssistant;
+  component: ResearchAssistant,
 });
 
 const LEVELS = ["quick", "beginner", "professional", "detailed"] as const;
