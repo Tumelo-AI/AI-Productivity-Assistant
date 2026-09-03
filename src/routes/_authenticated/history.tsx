@@ -37,7 +37,7 @@ export const Route = createFileRoute("/_authenticated/history")({
 
 type Item = {
   id: string;
-  tool: ToolKey;
+  tool: Exclude<ToolKey, "assistant">;
   title: string;
   detail: string;
   created_at: string;

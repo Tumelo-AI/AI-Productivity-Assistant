@@ -16,6 +16,7 @@ import { Route as SignupRouteImport } from './routes/signup'
 import { Route as AuthenticatedAssistantRouteImport } from './routes/_authenticated/assistant'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedEmailGeneratorRouteImport } from './routes/_authenticated/email-generator'
+import { Route as AuthenticatedHistoryRouteImport } from './routes/_authenticated/history'
 import { Route as AuthenticatedMeetingSummarizerRouteImport } from './routes/_authenticated/meeting-summarizer'
 import { Route as AuthenticatedResearchAssistantRouteImport } from './routes/_authenticated/research-assistant'
 import { Route as AuthenticatedTaskPlannerRouteImport } from './routes/_authenticated/task-planner'
@@ -55,6 +56,11 @@ const AuthenticatedEmailGeneratorRoute =
     path: '/email-generator',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedHistoryRoute = AuthenticatedHistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedMeetingSummarizerRoute =
   AuthenticatedMeetingSummarizerRouteImport.update({
     id: '/meeting-summarizer',
@@ -81,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/assistant': typeof AuthenticatedAssistantRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/email-generator': typeof AuthenticatedEmailGeneratorRoute
+  '/history': typeof AuthenticatedHistoryRoute
   '/meeting-summarizer': typeof AuthenticatedMeetingSummarizerRoute
   '/research-assistant': typeof AuthenticatedResearchAssistantRoute
   '/task-planner': typeof AuthenticatedTaskPlannerRoute
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/assistant': typeof AuthenticatedAssistantRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/email-generator': typeof AuthenticatedEmailGeneratorRoute
+  '/history': typeof AuthenticatedHistoryRoute
   '/meeting-summarizer': typeof AuthenticatedMeetingSummarizerRoute
   '/research-assistant': typeof AuthenticatedResearchAssistantRoute
   '/task-planner': typeof AuthenticatedTaskPlannerRoute
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/_authenticated/assistant': typeof AuthenticatedAssistantRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/email-generator': typeof AuthenticatedEmailGeneratorRoute
+  '/_authenticated/history': typeof AuthenticatedHistoryRoute
   '/_authenticated/meeting-summarizer': typeof AuthenticatedMeetingSummarizerRoute
   '/_authenticated/research-assistant': typeof AuthenticatedResearchAssistantRoute
   '/_authenticated/task-planner': typeof AuthenticatedTaskPlannerRoute
@@ -118,6 +127,7 @@ export interface FileRouteTypes {
     | '/assistant'
     | '/dashboard'
     | '/email-generator'
+    | '/history'
     | '/meeting-summarizer'
     | '/research-assistant'
     | '/task-planner'
@@ -129,6 +139,7 @@ export interface FileRouteTypes {
     | '/assistant'
     | '/dashboard'
     | '/email-generator'
+    | '/history'
     | '/meeting-summarizer'
     | '/research-assistant'
     | '/task-planner'
@@ -141,6 +152,7 @@ export interface FileRouteTypes {
     | '/_authenticated/assistant'
     | '/_authenticated/dashboard'
     | '/_authenticated/email-generator'
+    | '/_authenticated/history'
     | '/_authenticated/meeting-summarizer'
     | '/_authenticated/research-assistant'
     | '/_authenticated/task-planner'
@@ -204,6 +216,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedEmailGeneratorRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/history': {
+      id: '/_authenticated/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof AuthenticatedHistoryRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/meeting-summarizer': {
       id: '/_authenticated/meeting-summarizer'
       path: '/meeting-summarizer'
@@ -232,6 +251,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAssistantRoute: typeof AuthenticatedAssistantRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedEmailGeneratorRoute: typeof AuthenticatedEmailGeneratorRoute
+  AuthenticatedHistoryRoute: typeof AuthenticatedHistoryRoute
   AuthenticatedMeetingSummarizerRoute: typeof AuthenticatedMeetingSummarizerRoute
   AuthenticatedResearchAssistantRoute: typeof AuthenticatedResearchAssistantRoute
   AuthenticatedTaskPlannerRoute: typeof AuthenticatedTaskPlannerRoute
@@ -241,6 +261,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAssistantRoute: AuthenticatedAssistantRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedEmailGeneratorRoute: AuthenticatedEmailGeneratorRoute,
+  AuthenticatedHistoryRoute: AuthenticatedHistoryRoute,
   AuthenticatedMeetingSummarizerRoute: AuthenticatedMeetingSummarizerRoute,
   AuthenticatedResearchAssistantRoute: AuthenticatedResearchAssistantRoute,
   AuthenticatedTaskPlannerRoute: AuthenticatedTaskPlannerRoute,
