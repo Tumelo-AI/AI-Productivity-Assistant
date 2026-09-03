@@ -19,6 +19,7 @@ import { Route as AuthenticatedEmailGeneratorRouteImport } from './routes/_authe
 import { Route as AuthenticatedHistoryRouteImport } from './routes/_authenticated/history'
 import { Route as AuthenticatedMeetingSummarizerRouteImport } from './routes/_authenticated/meeting-summarizer'
 import { Route as AuthenticatedResearchAssistantRouteImport } from './routes/_authenticated/research-assistant'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 import { Route as AuthenticatedTaskPlannerRouteImport } from './routes/_authenticated/task-planner'
 
 const IndexRoute = IndexRouteImport.update({
@@ -73,6 +74,11 @@ const AuthenticatedResearchAssistantRoute =
     path: '/research-assistant',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedTaskPlannerRoute =
   AuthenticatedTaskPlannerRouteImport.update({
     id: '/task-planner',
@@ -90,6 +96,7 @@ export interface FileRoutesByFullPath {
   '/history': typeof AuthenticatedHistoryRoute
   '/meeting-summarizer': typeof AuthenticatedMeetingSummarizerRoute
   '/research-assistant': typeof AuthenticatedResearchAssistantRoute
+  '/settings': typeof AuthenticatedSettingsRoute
   '/task-planner': typeof AuthenticatedTaskPlannerRoute
 }
 export interface FileRoutesByTo {
@@ -102,6 +109,7 @@ export interface FileRoutesByTo {
   '/history': typeof AuthenticatedHistoryRoute
   '/meeting-summarizer': typeof AuthenticatedMeetingSummarizerRoute
   '/research-assistant': typeof AuthenticatedResearchAssistantRoute
+  '/settings': typeof AuthenticatedSettingsRoute
   '/task-planner': typeof AuthenticatedTaskPlannerRoute
 }
 export interface FileRoutesById {
@@ -116,6 +124,7 @@ export interface FileRoutesById {
   '/_authenticated/history': typeof AuthenticatedHistoryRoute
   '/_authenticated/meeting-summarizer': typeof AuthenticatedMeetingSummarizerRoute
   '/_authenticated/research-assistant': typeof AuthenticatedResearchAssistantRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
   '/_authenticated/task-planner': typeof AuthenticatedTaskPlannerRoute
 }
 export interface FileRouteTypes {
@@ -130,6 +139,7 @@ export interface FileRouteTypes {
     | '/history'
     | '/meeting-summarizer'
     | '/research-assistant'
+    | '/settings'
     | '/task-planner'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -142,6 +152,7 @@ export interface FileRouteTypes {
     | '/history'
     | '/meeting-summarizer'
     | '/research-assistant'
+    | '/settings'
     | '/task-planner'
   id:
     | '__root__'
@@ -155,6 +166,7 @@ export interface FileRouteTypes {
     | '/_authenticated/history'
     | '/_authenticated/meeting-summarizer'
     | '/_authenticated/research-assistant'
+    | '/_authenticated/settings'
     | '/_authenticated/task-planner'
   fileRoutesById: FileRoutesById
 }
@@ -237,6 +249,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedResearchAssistantRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/task-planner': {
       id: '/_authenticated/task-planner'
       path: '/task-planner'
@@ -254,6 +273,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedHistoryRoute: typeof AuthenticatedHistoryRoute
   AuthenticatedMeetingSummarizerRoute: typeof AuthenticatedMeetingSummarizerRoute
   AuthenticatedResearchAssistantRoute: typeof AuthenticatedResearchAssistantRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
   AuthenticatedTaskPlannerRoute: typeof AuthenticatedTaskPlannerRoute
 }
 
@@ -264,6 +284,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedHistoryRoute: AuthenticatedHistoryRoute,
   AuthenticatedMeetingSummarizerRoute: AuthenticatedMeetingSummarizerRoute,
   AuthenticatedResearchAssistantRoute: AuthenticatedResearchAssistantRoute,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
   AuthenticatedTaskPlannerRoute: AuthenticatedTaskPlannerRoute,
 }
 
