@@ -14,7 +14,317 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      activity_log: {
+        Row: {
+          action: string | null
+          created_at: string
+          id: string
+          record_id: string | null
+          title: string | null
+          tool: string
+          user_id: string
+        }
+        Insert: {
+          action?: string | null
+          created_at?: string
+          id?: string
+          record_id?: string | null
+          title?: string | null
+          tool: string
+          user_id: string
+        }
+        Update: {
+          action?: string | null
+          created_at?: string
+          id?: string
+          record_id?: string | null
+          title?: string | null
+          tool?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      chat_conversations: {
+        Row: {
+          created_at: string
+          id: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          title?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      chat_messages: {
+        Row: {
+          content: string
+          conversation_id: string
+          created_at: string
+          id: string
+          role: string
+        }
+        Insert: {
+          content: string
+          conversation_id: string
+          created_at?: string
+          id?: string
+          role: string
+        }
+        Update: {
+          content?: string
+          conversation_id?: string
+          created_at?: string
+          id?: string
+          role?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chat_messages_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "chat_conversations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      email_generations: {
+        Row: {
+          audience: string | null
+          created_at: string
+          generated_email: string | null
+          id: string
+          important_information: string | null
+          length: string | null
+          purpose: string | null
+          recipient: string | null
+          subject: string | null
+          tone: string | null
+          user_id: string
+        }
+        Insert: {
+          audience?: string | null
+          created_at?: string
+          generated_email?: string | null
+          id?: string
+          important_information?: string | null
+          length?: string | null
+          purpose?: string | null
+          recipient?: string | null
+          subject?: string | null
+          tone?: string | null
+          user_id: string
+        }
+        Update: {
+          audience?: string | null
+          created_at?: string
+          generated_email?: string | null
+          id?: string
+          important_information?: string | null
+          length?: string | null
+          purpose?: string | null
+          recipient?: string | null
+          subject?: string | null
+          tone?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      meeting_summaries: {
+        Row: {
+          action_items: Json
+          created_at: string
+          decisions: Json
+          follow_up: Json
+          id: string
+          key_points: Json
+          meeting_date: string | null
+          meeting_title: string | null
+          notes: string | null
+          participants: string | null
+          summary: string | null
+          user_id: string
+        }
+        Insert: {
+          action_items?: Json
+          created_at?: string
+          decisions?: Json
+          follow_up?: Json
+          id?: string
+          key_points?: Json
+          meeting_date?: string | null
+          meeting_title?: string | null
+          notes?: string | null
+          participants?: string | null
+          summary?: string | null
+          user_id: string
+        }
+        Update: {
+          action_items?: Json
+          created_at?: string
+          decisions?: Json
+          follow_up?: Json
+          id?: string
+          key_points?: Json
+          meeting_date?: string | null
+          meeting_title?: string | null
+          notes?: string | null
+          participants?: string | null
+          summary?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      research_sessions: {
+        Row: {
+          created_at: string
+          explanation_level: string | null
+          findings: Json
+          id: string
+          insights: Json
+          question: string | null
+          questions_to_consider: Json
+          recommendations: Json
+          simple_explanation: string | null
+          source_text: string | null
+          summary: string | null
+          topic: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          explanation_level?: string | null
+          findings?: Json
+          id?: string
+          insights?: Json
+          question?: string | null
+          questions_to_consider?: Json
+          recommendations?: Json
+          simple_explanation?: string | null
+          source_text?: string | null
+          summary?: string | null
+          topic?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          explanation_level?: string | null
+          findings?: Json
+          id?: string
+          insights?: Json
+          question?: string | null
+          questions_to_consider?: Json
+          recommendations?: Json
+          simple_explanation?: string | null
+          source_text?: string | null
+          summary?: string | null
+          topic?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      task_plans: {
+        Row: {
+          created_at: string
+          end_time: string | null
+          generated_plan: Json
+          id: string
+          planning_period: string | null
+          start_time: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          end_time?: string | null
+          generated_plan?: Json
+          id?: string
+          planning_period?: string | null
+          start_time?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          end_time?: string | null
+          generated_plan?: Json
+          id?: string
+          planning_period?: string | null
+          start_time?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      tasks: {
+        Row: {
+          created_at: string
+          deadline: string | null
+          description: string | null
+          estimated_duration: number | null
+          id: string
+          priority: string
+          status: string
+          task_name: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          deadline?: string | null
+          description?: string | null
+          estimated_duration?: number | null
+          id?: string
+          priority?: string
+          status?: string
+          task_name: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          deadline?: string | null
+          description?: string | null
+          estimated_duration?: number | null
+          id?: string
+          priority?: string
+          status?: string
+          task_name?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
