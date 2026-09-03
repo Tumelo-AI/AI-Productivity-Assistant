@@ -87,7 +87,7 @@ async function callGateway(messages: ChatTurn[], opts: { model?: string; json?: 
 
 /** Plain text / conversational completion. */
 export async function runChatPrompt(messages: ChatTurn[], model?: string): Promise<string> {
-  return callGateway(messages, { model: model ?? undefined });
+  return callGateway(messages, model ? { model } : {});
 }
 
 function extractJson(raw: string): unknown {
@@ -127,7 +127,7 @@ export async function runStructuredPrompt<T>(
       { role: "system", content: system },
       { role: "user", content: user },
     ],
-    { json: true, model: model ?? undefined },
+    model ? { json: true, model } : { json: true },
   );
   const parsed = extractJson(raw);
   try {
