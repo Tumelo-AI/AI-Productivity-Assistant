@@ -13,7 +13,14 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as AuthenticatedAssistantRouteImport } from './routes/_authenticated/assistant'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedEmailGeneratorRouteImport } from './routes/_authenticated/email-generator'
+import { Route as AuthenticatedHistoryRouteImport } from './routes/_authenticated/history'
+import { Route as AuthenticatedMeetingSummarizerRouteImport } from './routes/_authenticated/meeting-summarizer'
+import { Route as AuthenticatedResearchAssistantRouteImport } from './routes/_authenticated/research-assistant'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedTaskPlannerRouteImport } from './routes/_authenticated/task-planner'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,23 +41,76 @@ const SignupRoute = SignupRouteImport.update({
   path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAssistantRoute = AuthenticatedAssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedEmailGeneratorRoute =
+  AuthenticatedEmailGeneratorRouteImport.update({
+    id: '/email-generator',
+    path: '/email-generator',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedHistoryRoute = AuthenticatedHistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMeetingSummarizerRoute =
+  AuthenticatedMeetingSummarizerRouteImport.update({
+    id: '/meeting-summarizer',
+    path: '/meeting-summarizer',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedResearchAssistantRoute =
+  AuthenticatedResearchAssistantRouteImport.update({
+    id: '/research-assistant',
+    path: '/research-assistant',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedTaskPlannerRoute =
+  AuthenticatedTaskPlannerRouteImport.update({
+    id: '/task-planner',
+    path: '/task-planner',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/assistant': typeof AuthenticatedAssistantRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/email-generator': typeof AuthenticatedEmailGeneratorRoute
+  '/history': typeof AuthenticatedHistoryRoute
+  '/meeting-summarizer': typeof AuthenticatedMeetingSummarizerRoute
+  '/research-assistant': typeof AuthenticatedResearchAssistantRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/task-planner': typeof AuthenticatedTaskPlannerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/assistant': typeof AuthenticatedAssistantRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/email-generator': typeof AuthenticatedEmailGeneratorRoute
+  '/history': typeof AuthenticatedHistoryRoute
+  '/meeting-summarizer': typeof AuthenticatedMeetingSummarizerRoute
+  '/research-assistant': typeof AuthenticatedResearchAssistantRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/task-planner': typeof AuthenticatedTaskPlannerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -58,20 +118,56 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/_authenticated/assistant': typeof AuthenticatedAssistantRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/email-generator': typeof AuthenticatedEmailGeneratorRoute
+  '/_authenticated/history': typeof AuthenticatedHistoryRoute
+  '/_authenticated/meeting-summarizer': typeof AuthenticatedMeetingSummarizerRoute
+  '/_authenticated/research-assistant': typeof AuthenticatedResearchAssistantRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/task-planner': typeof AuthenticatedTaskPlannerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/signup' | '/dashboard'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/signup'
+    | '/assistant'
+    | '/dashboard'
+    | '/email-generator'
+    | '/history'
+    | '/meeting-summarizer'
+    | '/research-assistant'
+    | '/settings'
+    | '/task-planner'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/signup' | '/dashboard'
+  to:
+    | '/'
+    | '/login'
+    | '/signup'
+    | '/assistant'
+    | '/dashboard'
+    | '/email-generator'
+    | '/history'
+    | '/meeting-summarizer'
+    | '/research-assistant'
+    | '/settings'
+    | '/task-planner'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/login'
     | '/signup'
+    | '/_authenticated/assistant'
     | '/_authenticated/dashboard'
+    | '/_authenticated/email-generator'
+    | '/_authenticated/history'
+    | '/_authenticated/meeting-summarizer'
+    | '/_authenticated/research-assistant'
+    | '/_authenticated/settings'
+    | '/_authenticated/task-planner'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -111,6 +207,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/assistant': {
+      id: '/_authenticated/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof AuthenticatedAssistantRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
@@ -118,15 +221,71 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/email-generator': {
+      id: '/_authenticated/email-generator'
+      path: '/email-generator'
+      fullPath: '/email-generator'
+      preLoaderRoute: typeof AuthenticatedEmailGeneratorRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/history': {
+      id: '/_authenticated/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof AuthenticatedHistoryRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/meeting-summarizer': {
+      id: '/_authenticated/meeting-summarizer'
+      path: '/meeting-summarizer'
+      fullPath: '/meeting-summarizer'
+      preLoaderRoute: typeof AuthenticatedMeetingSummarizerRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/research-assistant': {
+      id: '/_authenticated/research-assistant'
+      path: '/research-assistant'
+      fullPath: '/research-assistant'
+      preLoaderRoute: typeof AuthenticatedResearchAssistantRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/task-planner': {
+      id: '/_authenticated/task-planner'
+      path: '/task-planner'
+      fullPath: '/task-planner'
+      preLoaderRoute: typeof AuthenticatedTaskPlannerRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAssistantRoute: typeof AuthenticatedAssistantRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedEmailGeneratorRoute: typeof AuthenticatedEmailGeneratorRoute
+  AuthenticatedHistoryRoute: typeof AuthenticatedHistoryRoute
+  AuthenticatedMeetingSummarizerRoute: typeof AuthenticatedMeetingSummarizerRoute
+  AuthenticatedResearchAssistantRoute: typeof AuthenticatedResearchAssistantRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedTaskPlannerRoute: typeof AuthenticatedTaskPlannerRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAssistantRoute: AuthenticatedAssistantRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedEmailGeneratorRoute: AuthenticatedEmailGeneratorRoute,
+  AuthenticatedHistoryRoute: AuthenticatedHistoryRoute,
+  AuthenticatedMeetingSummarizerRoute: AuthenticatedMeetingSummarizerRoute,
+  AuthenticatedResearchAssistantRoute: AuthenticatedResearchAssistantRoute,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedTaskPlannerRoute: AuthenticatedTaskPlannerRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
